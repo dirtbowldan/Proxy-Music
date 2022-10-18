@@ -1,0 +1,62 @@
+.datatable {
+  .dataTitle {
+  }
+  .links {
+    .applelink {
+      color: black;
+      height: auto;
+      width: 25px;
+      &:hover {
+        color: red;
+      }
+    }
+    .spotifylink {
+      color: black;
+      height: auto;
+      width: 23px;
+
+      &:hover {
+        color: rgb(27, 212, 3);
+      }
+    }
+    .soundcloudlink {
+      color: black;
+      height: auto;
+      width: 25px;
+      &:hover {
+        color: rgb(255, 145, 0);
+      }
+    }
+  }
+  .cellWithImg {
+    
+    .cellImg {
+      margin-right: 10px;
+      height: 50px;
+      width: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    div{
+      text-align: center;
+    }
+  }
+  .cellAction {
+    .viewButton {
+      text-align: center;
+      padding: 2px 5px;
+      border-radius: 5px;
+      color: rgb(0, 0, 0);
+      border: 1px solid #06643d;
+      cursor: pointer;
+    }
+    .deleteButton {
+      padding: 2px 5px;
+      border-radius: 5px;
+      color: rgb(0, 0, 0);
+      border: 1px solid #006e4a;
+      cursor: pointer;
+    }
+  }
+}

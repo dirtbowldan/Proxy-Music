@@ -1,0 +1,109 @@
+.sidebar {
+  
+  flex: 1;
+  
+  border-right: 1px inset rgb(170, 170, 170);
+  min-height: 100vh;
+  
+
+  .top {
+    border-bottom: 1px inset rgb(170, 170, 170);
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .logo {
+      font-size: 2.1rem;
+      font-weight: bold;
+      font-style: italic;
+      letter-spacing: 10px;
+      font-family: "Race";
+      color: rgb(0, 0, 0);
+      text-align: center;
+      -webkit-animation: glow 0.4s ease-in-out infinite alternate;
+      -moz-animation: glow 0.2s ease-in-out infinite alternate;
+      animation: glow 1s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 5px #fff, 0 0 8px #fff, 0 0 11px rgb(240, 39, 39),
+          0 0 13px rgb(255, 112, 112), 0 0 14px rgb(255, 112, 112), 0 0 10px rgb(184, 18, 18), 0 0 14px rgb(255, 112, 112);
+      }
+      to {
+        text-shadow: 0 0 13px #ff6a6a, 0 0 15px #f76e6e, 0 0 17px #f06666,
+          0 0 19px #e27f7f, 0 0 21px #eb7c7c, 0 0 23px #dd7474, 0 0 25px #f17979;
+      }
+    }
+  }
+
+  hr {
+    height: 0;
+    border: px solid rgb(170, 170, 170);
+  }
+
+  .center {
+    padding-left: 10px;
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      .title {
+        font-size: 12px;
+        font-weight: bold;
+        color: black;
+        margin-top: 15px;
+        margin-bottom: 5px;
+      }
+
+
+      
+
+      li {
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        cursor: pointer;
+        color: #000;
+
+        &:hover {
+          background-color: #ff2d2d;
+          transition: 0.5s;
+          color: white;
+        }
+
+        .icon {
+          font-size: 18px;
+        }
+        span {
+          font-size: 18px;
+          font-weight: bold;
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    .colorOption {
+      width: 20px;
+      height: 20px;
+      border-radius: 5px;
+      
+      cursor: pointer;
+      margin: 5px;
+      &:nth-child(1) {
+        background-color: rgb(255, 246, 209);
+        border: 1px solid #ff3c3c;
+      }
+      &:nth-child(2) {
+        background-color: black;
+        border: 1px solid #00ca7d;
+      }
+    }
+  }
+}

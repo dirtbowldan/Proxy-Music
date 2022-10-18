@@ -1,0 +1,81 @@
+.app.dark{
+    background-color: rgb(34, 34, 34);
+    color: white;
+
+    .chartgrid{
+        stroke: rgb(0, 255, 128);
+    }
+
+    .table{
+        background-color: rgb(32, 32, 32);
+        .tablecell{
+        color: white;
+    }}
+
+    .sidebar{
+        background-color: black;
+        color: white;
+        .title{
+            color: white;
+        }
+        ul{
+            li{
+                color: white;
+                &:hover{
+                    background-color: rgb(0, 255, 136);
+
+                }
+            }
+        }
+    }
+
+    
+      @keyframes glowdark {
+        from {
+          box-shadow: 0 0 5px #fff, 0 0 5px #fff, 0 0 5px #00e660,
+            0 0 16px #00e660, 0 0 5px #00e660, 0 0 5px #00e660, 0 0 5px #00e660;
+        }
+        to {
+          box-shadow: 0 0 7px #fff, 0 0 11px #00ca7d, 0 0 8px #00ca7d,
+            0 0 6px #00ca7d, 0 0 9px #00ca7d, 0 0 3px #00ca7d, 0 0 6px #00ca7d;
+        }
+      }
+
+
+
+
+      @keyframes glowgold {
+        from {
+          box-shadow: 0 0 5px #fff, 0 0 5px rgb(255, 92, 42), 0 0 5px #e4b722,
+            0 0 16px #e47106, 0 0 5px #ff8903, 0 0 5px #ff6b09, 0 0 5px #c48600;
+        }
+        to {
+          box-shadow: 0 0 7px #fff, 0 0 11px #a00b00, 0 0 8px #ca4000,
+            0 0 6px #ca9400, 0 0 9px #ee9c20, 0 0 3px #ff3015, 0 0 6px #f36d00;
+        }
+      }
+
+
+
+      @keyframes glowtitle {
+        from {
+          box-shadow: 0 0 5px rgba(255, 255, 255, 0.219), 0 0 5px rgba(255, 255, 255, 0.158), 0 0 5px #f0f0f0,
+            0 0 16px #bbbbbb, 0 0 5px #eeeeee, 0 0 5px #808080, 0 0 5px #818181;
+        }
+        to {
+          box-shadow: 0 0 7px rgb(131, 131, 131), 0 0 11px #8f8f8f, 0 0 8px #b6b6b6,
+            0 0 6px #f7f7f7, 0 0 9px #ffffff, 0 0 3px #8b8b8b, 0 0 6px #b9b9b9;
+        }
+      }
+
+      @keyframes glowtext {
+        from {
+          text-shadow: 0 0 5px rgba(255, 255, 255, 0.473), 0 0 5px rgba(255, 255, 255, 0.336), 0 0 5px #f0f0f03f,
+            0 0 16px #bbbbbb, 0 0 5px #eeeeee38, 0 0 5px #808080, 0 0 5px #818181;
+        }
+        to {
+          text-shadow: 0 0 7px rgb(131, 131, 131), 0 0 11px #8f8f8f, 0 0 8px #b6b6b6,
+            0 0 6px #f7f7f73b, 0 0 9px #ffffff31, 0 0 3px #8b8b8b, 0 0 6px #b9b9b9;
+        }
+      }
+}
