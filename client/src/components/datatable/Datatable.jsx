@@ -4,20 +4,18 @@ import { userColumns, userRows } from "../../datatablesource";
 import "./avatar.png";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../../firebase";
-import { onSnapshot } from "firebase/firestore";
+
+
 import { useSelector } from 'react-redux';
 
 const Datatable = () => {
   const [data, setData] = useState([]);
   const posts = useSelector((state) => state.reducers.posts);
-  console.log(posts)
   const handleLike = (userid) => {
     //still working on implementing likes
     alert(userid);
   };
-  console.log(data)
+
   useEffect(() => {
         let newid = 0
         let list = [];

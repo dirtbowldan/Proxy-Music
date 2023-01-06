@@ -2,11 +2,7 @@ import React, { useContext } from "react";
 import "./login.scss";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import {
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-} from "firebase/auth";
-import { auth } from "../../firebase";
+
 import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
@@ -24,16 +20,7 @@ const Login = () => {
   
   const handleLogin = (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        dispatch({ type: "LOGIN", payload: user });
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    
   };
   
   

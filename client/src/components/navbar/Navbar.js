@@ -1,25 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./navbar.scss";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import MessageIcon from "@mui/icons-material/Message";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
-import { auth } from "../../firebase";
-import { signOut } from "firebase/auth";
-
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const Navbar = ({ currentUser }) => {
-  
   //logs out current user from navbar and rest of site
-  
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const navigate = useNavigate()
+  const dispatch = useDispatch();
   const handleLogout = () => {
-    localStorage.setItem("user", JSON.stringify(""));
-    signOut(auth)
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch((error) => {
-        // An error happened.
-      });
+    
+      dispatch({ type: "LOGOUT" });
+      navigate(0)
+  
   };
+
+  useEffect(() => {
+    const token = user?.jwtotken;
+
+    setUser(JSON.parse(localStorage.getItem("profile")));
+  }, []);
 
   return (
     <div className="navbar1">
@@ -44,17 +46,21 @@ const Navbar = ({ currentUser }) => {
           </a>
         </div>
         <div className="profile">
-          <div className="item">
-            <div>Profile</div>
-            <img
-              height="50px"
-              src={require("./avatar.png")}
-              className="avatar"
-            />
-            <button type="submit" onClick={handleLogout}>
-              Log Out
-            </button>
-          </div>
+          {user ? (
+            <div className="item">
+              <div>Profile</div>
+              <img
+                height="50px"
+                src={require("./avatar.png")}
+                className="avatar"
+              />
+              <button type="submit" onClick={handleLogout}>
+                Log Out
+              </button>
+            </div>
+          ) : (
+            <a href="/new">Sign In</a>
+          )}
         </div>
       </div>
     </div>

@@ -2,90 +2,51 @@ import React, { useEffect } from "react";
 import "./new.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage } from "../../firebase";
+import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
-
-import {
-  doc,
-  setDoc,
-  addDoc,
-  collection,
-  Timestamp,
-  serverTimestamp,
-} from "firebase/firestore";
-import { auth, db } from "../../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import {signin, signup} from "../../actions/auth"
+import jwt_decode from "jwt-decode";
 var axios = require("axios");
 const New = ({ inputs }) => {
-  const [file, setFile] = React.useState("");
-  const [data, setData] = React.useState({});
-  const [per, setPer] = React.useState(null);
-
-  useEffect(() => {
-    const uploadFile = () => {
-      const name = new Date().getTime() + file.name;
-      const storageRef = ref(storage, file.name);
-      const uploadTask = uploadBytesResumable(storageRef, file);
-
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-          setPer(progress);
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-            default:
-              break;
-          }
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          // Handle successful uploads on complete
-          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setData((prev) => ({ ...prev, img: downloadURL }));
-          });
-        }
-      );
-    };
-    file && uploadFile();
-  }, [file]);
+  const [data, setData] = React.useState({email: "", password: ""});
+  let navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleInput = (e) => {
-    console.log(e);
     const id = e.target.id;
     const value = e.target.value;
-    console.log(value);
+
     setData({ ...data, [id]: value });
   };
-  let navigate = useNavigate();
+
   const handleAdd = async (e) => {
     e.preventDefault();
-    console.log(data);
-    const res = await createUserWithEmailAndPassword(
-      auth,
-      data.email,
-      data.password
-    );
-
-    let path = "/";
-    navigate("/");
+    dispatch(signup(data, navigate))
   };
+
+  const googleSuccess = (decoded, jwtotken) => {
+   
+
+    try {
+      dispatch({ type: "AUTH", data: { decoded, jwtotken } });
+
+      navigate('/')
+    } catch (error) {}
+  };
+
+  const googleFailure = (error) => {
+    console.log(error);
+    console.log("fail");
+  };
+
   return (
     <div className="new">
+    
       <div className="newContainer row">
+        
         <div className="top col">
-          <h1>Welcome to Proxy Music</h1>
+          <Navbar /><h1>Welcome to Proxy Music</h1>
           <h3>A simple artist database</h3>
         </div>
         <div className="bottom col">
@@ -111,10 +72,20 @@ const New = ({ inputs }) => {
                   onChange={handleInput}
                 />
               </div>
+              <button>Sign Up</button>
+              <button>Sign In</button>
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  var decoded = jwt_decode(credentialResponse.credential);
+                  let jwtotken = credentialResponse.credential
+                  googleSuccess(decoded, jwtotken)
+                 
 
-              <button disabled={per !== null && per < 100} type="submit">
-                Sign Up
-              </button>
+                }}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+              />
             </form>
           </div>
         </div>

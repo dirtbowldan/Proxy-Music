@@ -3,7 +3,7 @@ import "./new.scss";
 import { useDispatch, useSelector } from 'react-redux';
 import Navbar from "../../components/navbar/Navbar";
 import { createArtist, updatePost } from '../../actions/posts';
-import { auth} from "../../firebase";
+
 
 
 const New = ({ inputs }) => {
